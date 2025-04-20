@@ -32,6 +32,10 @@ namespace RealEstate.API.Controllers
         [HttpPost]
         public async Task<ActionResult<PropertyDto>> Create(CreatePropertyDto dto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var property = await _propertyService.CreateAsync(dto);
             return CreatedAtAction(nameof(GetById), new { id = property.Id }, property);
         }
@@ -39,6 +43,10 @@ namespace RealEstate.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, UpdatePropertyDto dto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             await _propertyService.UpdateAsync(id, dto);
             return NoContent();
         }
