@@ -16,11 +16,23 @@ namespace RealEstate.Infrastructure.Data
         {
 
         }
-        public DbSet<Property> Properties { get; set; }
+        public DbSet<Property> Propertys { get; set; }
+      
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=realestatedb;Trusted_Connection=true;TrustServerCertificate=true;");
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Property>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Name).HasMaxLength(100).IsRequired();
+                entity.Property(e => e.Address).HasMaxLength(200);
+                entity.Property(e => e.Price).HasColumnType("decimal(18,2)");
+            });
         }
 
     }

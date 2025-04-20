@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-
-
+using RealEstate.Application.Interface;
+using RealEstate.Application.Service;
+using RealEstate.Domain.Interface;
 using RealEstate.Infrastructure.Data;
 using RealEstate.Infrastructure.Repository;
-using RealEstate.Domain.Interface;
 
 
 using RealEstate.Application;

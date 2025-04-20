@@ -9,6 +9,10 @@ namespace RealEstate.Domain.Interface
 {
     public interface IPropertyRepository
     {
-        List<Property> GetAllProperties();
+        Task<Property> GetByIdAsync(int id);
+        Task<IEnumerable<Property>> GetAllAsync();
+        Task<Property> AddAsync(Property property);
+        Task UpdateAsync(Property property);
+        Task DeleteAsync(int id);
     }
 }

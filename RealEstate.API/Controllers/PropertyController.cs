@@ -1,41 +1,53 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RealEstate.Domain.Interface;
-using RealEstate.Domain.Entity;
+using RealEstate.Application.DTO;
+using RealEstate.Application.Interface;
 
 namespace RealEstate.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PropertyController : Controller
+    public class PropertysController : ControllerBase
     {
         private readonly IPropertyService _propertyService;
 
-        public PropertyController(IPropertyService propertyService)
+        public PropertysController(IPropertyService propertyService)
         {
             _propertyService = propertyService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Property>>> GetAllProperties()
+        public async Task<ActionResult<IEnumerable<PropertyDto>>> GetAll()
         {
-            return _propertyService.GetAllProperties();
+            var propertys = await _propertyService.GetAllAsync();
+            return Ok(propertys);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Property>> GetSingleProperty(int id)
+        public async Task<ActionResult<PropertyDto>> GetById(int id)
         {
-            var result = await _propertyService.GetSingleProperty(id);
-            if (result is null)
-                return NotFound("Property not found.");
-
-            return Ok(result);
+            var property = await _propertyService.GetByIdAsync(id);
+            return Ok(property);
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Property>>> AddProperty(Property Property)
+        public async Task<ActionResult<PropertyDto>> Create(CreatePropertyDto dto)
         {
-            var result = _propertyService.AddProperty(Property);
-            return Ok(result);
+            var property = await _propertyService.CreateAsync(dto);
+            return CreatedAtAction(nameof(GetById), new { id = property.Id }, property);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, UpdatePropertyDto dto)
+        {
+            await _propertyService.UpdateAsync(id, dto);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _propertyService.DeleteAsync(id);
+            return NoContent();
         }
     }
 }

@@ -11,7 +11,7 @@ using RealEstate.Infrastructure.Data;
 namespace RealEstate.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250420120908_firstinitial")]
+    [Migration("20250420140907_firstinitial")]
     partial class firstinitial
     {
         /// <inheritdoc />
@@ -34,18 +34,20 @@ namespace RealEstate.Infrastructure.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Properties");
+                    b.ToTable("Propertys");
                 });
 #pragma warning restore 612, 618
         }
