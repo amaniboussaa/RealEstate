@@ -15,5 +15,7 @@ namespace RealEstate.Application.Interface
         Task<PropertyDto> CreateAsync(CreatePropertyDto dto);
         Task UpdateAsync(int id, UpdatePropertyDto dto);
         Task DeleteAsync(int id);
+        Task<object> SimulateInvestmentAsync(int propertyId, double investmentAmount);
+
     }
 }

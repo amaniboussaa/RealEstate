@@ -50,6 +50,28 @@ namespace RealEstate.Application.Service
         {
             await _propertyRepository.DeleteAsync(id);
         }
+        public async Task<object> SimulateInvestmentAsync(int propertyId, double investmentAmount)
+        {
+            if (investmentAmount <= 0)
+            {
+                throw new ArgumentException("Investment amount must be greater than zero.");
+            }
+
+            var property = await _propertyRepository.GetByIdAsync(propertyId);
+
+            if (property == null)
+            {
+                throw new ArgumentException($"Property with ID {propertyId} not found.");
+            }
+            double estimatedReturn = investmentAmount + (investmentAmount * 0.075);
+            return new
+            {
+                propertyId = property.Id,
+                investmentAmount,
+                estimatedReturn,
+                annualYield = 7.5
+            };
+        }
 
     }
 

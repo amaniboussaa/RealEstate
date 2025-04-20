@@ -49,5 +49,24 @@ namespace RealEstate.API.Controllers
             await _propertyService.DeleteAsync(id);
             return NoContent();
         }
+        [HttpPost("{id}/simulate-investment")]
+        public async Task<ActionResult<object>> SimulateInvestment(int id, [FromBody] InvestmentDto investmentDto)
+        {
+            try
+            {
+                if (investmentDto == null || investmentDto.InvestmentAmount <= 0)
+                {
+                    return BadRequest("Investment amount must be greater than zero.");
+                }
+                var result1 = await _propertyService.SimulateInvestmentAsync(id, investmentDto.InvestmentAmount);
+                return Ok(result1);
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            var result = await _propertyService.SimulateInvestmentAsync(id, investmentDto.InvestmentAmount);
+            return Ok(result);
+        }
     }
 }
