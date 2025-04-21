@@ -64,8 +64,8 @@ This is a sample solution demonstrating **Clean Architecture** and **Domain-Driv
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/JenilSojitra/CleanArchitectureDemo.git
-cd CleanArchitectureDemo
+git clone https://github.com/amaniboussaa/RealEstate.git
+cd RealEstateDemo
 
 ```
 2. **Build the solution**
@@ -76,7 +76,7 @@ dotnet build
 3. **Run the application**
 
 ```bash
-cd CleanArchitecture.WebApi
+cd RealEstate.WebApi
 dotnet run
 ```
 ## 📡 API Endpoints (Property API)
