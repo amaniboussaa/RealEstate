@@ -11,6 +11,7 @@ This is a sample solution demonstrating **Clean Architecture** and **Domain-Driv
 - Contains enterprise/business logic
 - **Includes:**
   - Entities
+  - Interfaces
 - ❌ No dependencies on other layers
 
 ---
@@ -48,7 +49,7 @@ This is a sample solution demonstrating **Clean Architecture** and **Domain-Driv
 
 - [.NET 7.0 SDK](https://dotnet.microsoft.com/en-us/download) or later
 - Visual Studio 2022 or Visual Studio Code
-- SQL Server *(optional — uses InMemory database by default)*
+- SQL Server 
 
 ---
 
@@ -69,7 +70,7 @@ dotnet build
 3. **Run the application**
 
 ```bash
-cd RealEstate.WebApi
+cd RealEstate.API
 dotnet run
 ```
 ## 📡 API Endpoints (Property API)
@@ -86,7 +87,7 @@ dotnet run
 
 ## 🧰 Technology Stack
 
-- **.NET 8.0**: High-performance modern development framework  
+- **.NET 7.0**: High-performance modern development framework  
 - **Entity Framework Core**: ORM for data access  
 - **Swagger / OpenAPI**: For interactive API documentation  
 - **SQL Server Express**: Optional, used for real DB testing  
