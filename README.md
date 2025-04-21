@@ -11,10 +11,6 @@ This is a sample solution demonstrating **Clean Architecture** and **Domain-Driv
 - Contains enterprise/business logic
 - **Includes:**
   - Entities
-  - Value Objects
-  - Domain Events
-  - Interfaces
-  - Business Rules
 - ❌ No dependencies on other layers
 
 ---
@@ -34,8 +30,7 @@ This is a sample solution demonstrating **Clean Architecture** and **Domain-Driv
 - **Includes:**
   - Database contexts
   - Repository implementations
-  - External service integrations
-- ✅ Depends on Domain and Application layers
+- ✅ Depends on Application layers
 
 ---
 
@@ -43,8 +38,6 @@ This is a sample solution demonstrating **Clean Architecture** and **Domain-Driv
 - Presentation layer exposing RESTful APIs
 - **Includes:**
   - API Controllers
-  - API Models
-  - Middleware
 - ✅ Depends on Application layer
 
 ---
