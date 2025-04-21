@@ -65,7 +65,7 @@ This is a sample solution demonstrating **Clean Architecture** and **Domain-Driv
 
 ```bash
 git clone https://github.com/amaniboussaa/RealEstate.git
-cd RealEstateDemo
+cd RealEstate
 
 ```
 2. **Build the solution**
